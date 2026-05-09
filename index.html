@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #fff0f3;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            transition: background-color 1s;
+        }
+
+        #konten {
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 24px;
+            margin-bottom: 10px;
+            transition: opacity 0.5s;
+        }
+
+        p {
+            color: #590d22;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+            transition: transform 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.9);
+        }
+
+        .love {
+            position: absolute;
+            bottom: -50px;
+            user-select: none;
+            pointer-events: none;
+            animation: terbang 4s linear forwards;
+        }
+
+        @keyframes terbang {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="konten">
+        <h1 id="judul">Hai! Aku punya sesuatu...</h1>
+        <p id="pesan">Coba tekan tombol di bawah ini ya</p>
+        <button id="btn" onclick="ungkapkan()">Klik di Sini ❤️</button>
+    </div>
+
+    <script>
+        function ungkapkan() {
+            // Mengubah teks judul dan pesan
+            document.getElementById("judul").innerHTML = "Aku Sebenernya Suka Kamu!";
+            document.getElementById("pesan").innerHTML = "Makasih ya udah selalu ada buat aku ✨";
+            
+            // Mengubah warna background sedikit lebih pink
+            document.body.style.backgroundColor = "#ffccd5";
+
+            // Sembunyikan tombol setelah diklik
+            document.getElementById("btn").style.display = "none";
+
+            // Memunculkan banyak hati secara terus menerus selama 5 detik
+            let intervalLove = setInterval(() => {
+                buatLove();
+            }, 100);
+
+            setTimeout(() => {
+                clearInterval(intervalLove);
+            }, 5000);
+        }
+
+        function buatLove() {
+            const love = document.createElement("div");
+            love.innerHTML = "❤️";
+            love.classList.add("love");
+            
+            // Posisi acak di lebar layar
+            love.style.left = Math.random() * 100 + "vw";
+            
+            // Ukuran acak
+            love.style.fontSize = (Math.random() * 30 + 10) + "px";
+            
+            // Durasi animasi acak agar lebih natural
+            love.style.animationDuration = (Math.random() * 2 + 2) + "s";
+            
+            document.body.appendChild(love);
+
+            // Hapus elemen setelah selesai animasi
+            setTimeout(() => {
+                love.remove();
+            }, 4000);
+        }
+    </script>
+
+</body>
+</html>
